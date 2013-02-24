@@ -1,0 +1,4 @@
+ start orbd -ORBInitialPort 1050
+ java HelloServer -ORBInitialPort 1050 -ORBInitialHost localhost&
+ java HelloClient -ORBInitialPort 1050 -ORBInitialHost localhost
+ idlj -pkgPrefix HelloApp java_code -fall Hello.idl
