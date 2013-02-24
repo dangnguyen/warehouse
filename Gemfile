@@ -11,9 +11,11 @@ gem 'jruby-openssl'
 
 gem 'haml'
 
+gem 'trinidad'
+
 group :development do
   gem 'haml-rails'
-
+  gem 'better_errors'
 end
 
 
@@ -27,7 +29,11 @@ group :assets do
   gem 'therubyrhino'
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'less-rails'
   gem 'twitter-bootstrap-rails'
+
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'
