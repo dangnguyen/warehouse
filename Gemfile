@@ -11,7 +11,7 @@ gem 'jruby-openssl'
 
 gem 'haml'
 
-gem 'trinidad'
+gem 'trinidad', :require => false
 
 group :development do
   gem 'haml-rails'
