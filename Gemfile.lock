@@ -36,8 +36,6 @@ GEM
     better_errors (0.7.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
-    bootstrap-sass (2.3.0.1)
-      sass (~> 3.2)
     bouncy-castle-java (1.5.0146.1)
     builder (3.0.4)
     coderay (1.0.9)
@@ -72,7 +70,6 @@ GEM
     jruby-openssl (0.8.2)
       bouncy-castle-java (>= 1.5.0146.1)
     jruby-rack (1.1.13.1)
-    json (1.7.7)
     json (1.7.7-java)
     less (2.2.2)
       commonjs (~> 0.2.6)
@@ -148,7 +145,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
   better_errors
-  bootstrap-sass
   coffee-rails (~> 3.2.1)
   haml
   haml-rails

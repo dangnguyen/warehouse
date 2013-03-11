@@ -3,3 +3,8 @@
  java HelloClient -ORBInitialPort 1050 -ORBInitialHost localhost
  idlj -pkgPrefix Warehouse java_code -fall Hello.idl
  javac *.java java_code/Warehouse/*.java
+
+
+
+
+ javac -classpath ";D:\jruby-1.7.3\lib\jruby.jar" java_code/*.java

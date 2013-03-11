@@ -66,5 +66,9 @@ module WareHouse
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    api_configs = YAML.load_file(Rails.root.join('config', 'api_server.yml'))[Rails.env]
+    config.api_host = api_configs["host"]
+    config.api_port = api_configs["port"]
   end
 end

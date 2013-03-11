@@ -7,7 +7,6 @@ gem 'rails', '3.2.12'
 
 gem 'activerecord-jdbcsqlite3-adapter'
 
-gem 'bootstrap-sass'
 
 gem 'jruby-openssl'
 

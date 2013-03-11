@@ -1,21 +1,44 @@
 module SessionsHelper
+
+  java_import "java_code.WarehouseClient"
+  java_import "java.lang.System"
+  java_import "java_code.Warehouse.APIMessageListHolder"
+  java_import "java_code.Warehouse.User"
+
   def signed_in?
     true
+    # !current_user.nil?
   end
-  # def sign_in(user)
-  #   cookies.permanent[:remember_token] = user.remember_token
-  #   self.current_user = user
-  # end
+  def sign_in(user)
+    apiMessageListHolder = APIMessageListHolder.new 
+    token =  WarehouseClient.login("admin", "1", apiMessageListHolder)
+    cookies.permanent[:remember_token] = token
+
+    apiMessageListHolder = APIMessageListHolder.new 
+    user =  WarehouseClient.getLoggedUser(token, apiMessageListHolder)
+
+    self.current_user = user
+  end
   
-  # def current_user=(user)
-  #   @current_user = user
-  # end
-  def current_user
-    nil
+  def current_user=(user)
+    @current_user = user
   end
-  # def current_user?(user)
-  #   user == current_user
-  # end
+
+  def current_user
+
+    apiMessageListHolder = APIMessageListHolder.new 
+    user =  WarehouseClient.getLoggedUser(cookies[:remember_token], apiMessageListHolder)
+
+    if user == nil
+      @current_user = nil
+    else 
+       @current_user = user
+    end
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
 
   # def signed_in_user
   #     unless signed_in?
