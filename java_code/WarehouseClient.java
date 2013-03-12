@@ -11,22 +11,25 @@ import javax.script.ScriptContext;
 import org.jruby.RubyHash;
 
 public class WarehouseClient {
-	static	WHM	warehouseImpl;
-	public WarehouseClient()  {
-
+	private	WHM	warehouseImpl;
+	private String host;
+	private Long port;
+	public WarehouseClient(String host, Long port)  {
+		this.host = host;
+		this.port = port;
 	}
-	public static void hehe() {
+	public void hehe() {
 		System.out.println("ha ha ha");
 	}
-	public static String hoho() {
+	public String hoho() {
 		String result = "";
 
 		try{
 			String[] params = new String[4];
 			params[0] = "-ORBInitialPort";
-			params[1] = "1050";
+			params[1] = port.toString();
 			params[2] = "-ORBInitialHost";
-			params[3] = "localhost";
+			params[3] = host;
 			//	create	and	initialize	the	ORB
 			ORB	orb	=	ORB.init(params,	null);
 			//	get	the	root	naming	context
@@ -48,9 +51,7 @@ public class WarehouseClient {
 		}
 		return result;
 	}
-	public static String login (String username, String password, java_code.Warehouse.APIMessageListHolder apiMessageList) {
-		Long port = null;
-		String host = null;
+	public String login (String username, String password, java_code.Warehouse.APIMessageListHolder apiMessageList) {
 		// try{
 		// 	//get jruby engine
   //   	ScriptEngine jruby = new ScriptEngineManager().getEngineByName("jruby");
@@ -63,8 +64,6 @@ public class WarehouseClient {
   // 	catch (ScriptException e) {
   // 		System.out.println(e);
   // 	}
-  	host = "localhost";
-    port = 1050L;
 
 		String result = "";
 		try{
@@ -95,13 +94,13 @@ public class WarehouseClient {
 		return result;
 	}
 
-	public static void logout (String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+	public void logout (String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
 		try{
 			String[] params = new String[4];
 			params[0] = "-ORBInitialPort";
-			params[1] = "1050";
+			params[1] = port.toString();
 			params[2] = "-ORBInitialHost";
-			params[3] = "localhost";
+			params[3] = host;
 			//	create	and	initialize	the	ORB
 			ORB	orb	=	ORB.init(params,	null);
 			//	get	the	root	naming	context
@@ -123,21 +122,21 @@ public class WarehouseClient {
 		}
 	}
 
-	public static void addUser (String username, String password, short role_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+	public void addUser (String username, String password, short role_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
 
 	}
-  public static void removeUser (short user_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  public void removeUser (short user_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
 
   }
 
-	public static java_code.Warehouse.User getLoggedUser (String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+	public java_code.Warehouse.User getLoggedUser (String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
 		java_code.Warehouse.User result = null;
 		try{
 			String[] params = new String[4];
 			params[0] = "-ORBInitialPort";
-			params[1] = "1050";
+			params[1] = port.toString();
 			params[2] = "-ORBInitialHost";
-			params[3] = "localhost";
+			params[3] = host;
 			//	create	and	initialize	the	ORB
 			ORB	orb	=	ORB.init(params,	null);
 			//	get	the	root	naming	context
