@@ -9,6 +9,7 @@ gem 'activerecord-jdbcsqlite3-adapter'
 
 
 gem 'jruby-openssl'
+gem 'bootstrap-sass'
 
 gem 'haml'
 

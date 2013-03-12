@@ -9,3 +9,4 @@
 
 
  javac -classpath ";D:\jruby-1.7.3\lib\jruby.jar" java_code/*.java
+ javac -classpath ":/Users/dang/.rvm/rubies/jruby-1.6.7.2/lib/jruby.jar" java_code/*.java

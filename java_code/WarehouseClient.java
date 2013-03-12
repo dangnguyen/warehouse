@@ -30,10 +30,10 @@ public class WarehouseClient {
 			//	create	and	initialize	the	ORB
 			ORB	orb	=	ORB.init(params,	null);
 			//	get	the	root	naming	context
-			org.omg.CORBA.Object	objRef	=	
+			org.omg.CORBA.Object	objRef	=
 			orb.resolve_initial_references("NameService");
-			//	Use	NamingContextExt	instead	of	NamingContext.	This	is	
-			//	part	of	the	Interoperable	naming	Service.		
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
 			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
 			//	resolve	the	Object	Reference	in	Naming
 			String	name	=	"WHM";
@@ -44,26 +44,27 @@ public class WarehouseClient {
 
 		}	catch	(Exception	e)	{
 			System.out.println("ERROR	:	"	+	e)	;
-			e.printStackTrace(System.out);	
+			e.printStackTrace(System.out);
 		}
 		return result;
 	}
 	public static String login (String username, String password, java_code.Warehouse.APIMessageListHolder apiMessageList) {
 		Long port = null;
 		String host = null;
-		try{
-			//get jruby engine
-    	ScriptEngine jruby = new ScriptEngineManager().getEngineByName("jruby");
-    	//process a ruby file
-    	// RubyHash yaml = (RubyHash)jruby.eval("YAML.load_file(Rails.root.join('config', 'api_server.yml'))[Rails.env]");
-    	// RubyHash yaml = (RubyHash)jruby.eval("WareHouse::Application.config.api_host");
-    	host = (String) jruby.eval("WareHouse::Application.config.api_host");
-    	port = (Long) jruby.eval("WareHouse::Application.config.api_port");
-  	}
-  	catch (ScriptException e) {
-  		System.out.println(e);
-  	}
-  	
+		// try{
+		// 	//get jruby engine
+  //   	ScriptEngine jruby = new ScriptEngineManager().getEngineByName("jruby");
+  //   	//process a ruby file
+  //   	// RubyHash yaml = (RubyHash)jruby.eval("YAML.load_file(Rails.root.join('config', 'api_server.yml'))[Rails.env]");
+  //   	// RubyHash yaml = (RubyHash)jruby.eval("WareHouse::Application.config.api_host");
+  //   	host = (String) jruby.eval("WareHouse::Application.config.api_host");
+  //   	port = (Long) jruby.eval("WareHouse::Application.config.api_port");
+  // 	}
+  // 	catch (ScriptException e) {
+  // 		System.out.println(e);
+  // 	}
+  	host = "localhost";
+    port = 1050L;
 
 		String result = "";
 		try{
@@ -75,10 +76,10 @@ public class WarehouseClient {
 			//	create	and	initialize	the	ORB
 			ORB	orb	=	ORB.init(params,	null);
 			//	get	the	root	naming	context
-			org.omg.CORBA.Object	objRef	=	
+			org.omg.CORBA.Object	objRef	=
 			orb.resolve_initial_references("NameService");
-			//	Use	NamingContextExt	instead	of	NamingContext.	This	is	
-			//	part	of	the	Interoperable	naming	Service.		
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
 			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
 			//	resolve	the	Object	Reference	in	Naming
 			String	name	=	"WHM";
@@ -89,7 +90,7 @@ public class WarehouseClient {
 
 		}	catch	(Exception	e)	{
 			System.out.println("ERROR	:	"	+	e)	;
-			e.printStackTrace(System.out);	
+			e.printStackTrace(System.out);
 		}
 		return result;
 	}
@@ -104,10 +105,10 @@ public class WarehouseClient {
 			//	create	and	initialize	the	ORB
 			ORB	orb	=	ORB.init(params,	null);
 			//	get	the	root	naming	context
-			org.omg.CORBA.Object	objRef	=	
+			org.omg.CORBA.Object	objRef	=
 			orb.resolve_initial_references("NameService");
-			//	Use	NamingContextExt	instead	of	NamingContext.	This	is	
-			//	part	of	the	Interoperable	naming	Service.		
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
 			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
 			//	resolve	the	Object	Reference	in	Naming
 			String	name	=	"WHM";
@@ -118,7 +119,7 @@ public class WarehouseClient {
 
 		}	catch	(Exception	e)	{
 			System.out.println("ERROR	:	"	+	e)	;
-			e.printStackTrace(System.out);	
+			e.printStackTrace(System.out);
 		}
 	}
 
@@ -140,10 +141,10 @@ public class WarehouseClient {
 			//	create	and	initialize	the	ORB
 			ORB	orb	=	ORB.init(params,	null);
 			//	get	the	root	naming	context
-			org.omg.CORBA.Object	objRef	=	
+			org.omg.CORBA.Object	objRef	=
 			orb.resolve_initial_references("NameService");
-			//	Use	NamingContextExt	instead	of	NamingContext.	This	is	
-			//	part	of	the	Interoperable	naming	Service.		
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
 			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
 			//	resolve	the	Object	Reference	in	Naming
 			String	name	=	"WHM";
@@ -154,7 +155,7 @@ public class WarehouseClient {
 
 		}	catch	(Exception	e)	{
 			System.out.println("ERROR	:	"	+	e)	;
-			e.printStackTrace(System.out);	
+			e.printStackTrace(System.out);
 		}
 		return result;
 	}
