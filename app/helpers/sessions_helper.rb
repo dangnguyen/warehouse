@@ -12,12 +12,12 @@ module SessionsHelper
   end
   def sign_in(user)
     @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
-    apiMessageListHolder = APIMessageListHolder.new 
+    apiMessageListHolder = APIMessageListHolder.new
     token =  @warehouseClient.login(user.username, user.password, apiMessageListHolder)
     if token != nil
       cookies.permanent[:remember_token] = token
 
-      apiMessageListHolder = APIMessageListHolder.new 
+      apiMessageListHolder = APIMessageListHolder.new
       user =  @warehouseClient.getLoggedUser(token, apiMessageListHolder)
 
       self.current_user = user
@@ -25,19 +25,22 @@ module SessionsHelper
       return nil
     end
   end
-  
+
   def current_user=(user)
     @current_user = user
   end
 
   def current_user
     @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
-    apiMessageListHolder = APIMessageListHolder.new 
-    user =  @warehouseClient.getLoggedUser(cookies[:remember_token], apiMessageListHolder)
-
+    apiMessageListHolder = APIMessageListHolder.new
+    token = cookies[:remember_token]
+    user = nil
+    if token != nil
+      user =  @warehouseClient.getLoggedUser(cookies[:remember_token], apiMessageListHolder)
+    end
     if user == nil
       @current_user = nil
-    else 
+    else
        @current_user = user
     end
   end
