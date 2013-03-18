@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     @apiMessageListHolder = APIMessageListHolder.new
     @test =  warehouseClient.login("admin", "1", @apiMessageListHolder)
 
-    @apiMessageListHolder = APIMessageListHolder.new 
+    @apiMessageListHolder = APIMessageListHolder.new
     @user =  warehouseClient.getLoggedUser(@test, @apiMessageListHolder)
     if signed_in?
       @test = "abc"

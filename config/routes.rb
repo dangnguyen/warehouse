@@ -18,6 +18,9 @@ WareHouse::Application.routes.draw do
 
   match '/contact', to: 'static_pages#contact'
 
+  # match '/warehouses', to: 'warehouses#index'
+  resources :warehouses, only: [:index]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
