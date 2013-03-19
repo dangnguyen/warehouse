@@ -1,4 +1,4 @@
 %ul.warehouses
   - @warehouses.each do |warehouse|
     %li
-      = warehouse.name
+      =link_to warehouse.name, warehouse_items_path(warehouse.id)
