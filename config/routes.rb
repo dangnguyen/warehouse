@@ -24,8 +24,8 @@ WareHouse::Application.routes.draw do
 
   # match '/warehouses', to: 'warehouses#index'
   resources :warehouses, only: [:index] do
-    resources :items, only: [:index] do 
-      
+    resources :items, only: [:index] do
+
     end
   end
 
