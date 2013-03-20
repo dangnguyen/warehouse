@@ -12,19 +12,32 @@ class ItemsController < ApplicationController
   end
 
   def search
-    w1 = WarehouseInfo.new
-    w1.id = 1
-    w1.name = "abc"
-    w2 = WarehouseInfo.new
-    w2.id = 2
-    w2.name = "abc 2"
-    @warehouses = []
-    @warehouses<<w1
-    @warehouses<<w2
+
+
+    @warehouse_arr = get_warehouses.map do |w|
+      [w.name, w.id]
+    end
 
 
   end
 
   def search_results
+
+    warehouse_ids =  params[:warehouse_ids]
+
+    @warehouse_arr = get_warehouses.map do |w|
+      [w.name, w.id]
+    end
+
   end
+
+  private
+    def get_warehouses
+      w1 = WarehouseInfo.new
+      w1.id = 1
+      w1.name = "Warehouse 1"
+      warehouses = []
+      warehouses<<w1
+      return warehouses
+    end
 end

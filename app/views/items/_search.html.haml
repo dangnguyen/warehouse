@@ -1,0 +1,8 @@
+.search.row
+  .span3
+    = form_tag(search_items_results_path, :method => "post") do |f|
+      = label_tag :item_code, "Item code"
+      = text_field_tag :item_code
+      = label_tag :warehouse_ids, "Warehouse"
+      = select_tag(:warehouse_ids, options_for_select(@warehouse_arr), { :multiple => true})
+      = submit_tag "Search", class: "btn btn-large btn-primary"

@@ -8,6 +8,7 @@
           %li= link_to "Help", help_path 
           - if signed_in? 
             %li= link_to "Warehouses", warehouses_path
+            %li= link_to "Search items", search_items_path
             %li= link_to "Users", users_path 
             %li.dropdown{:id => "fat-menu"}
               %a.dropdown-toggle{:href => "#", :data => {:toggle => 'dropdown'}}

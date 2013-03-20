@@ -18,10 +18,17 @@ WareHouse::Application.routes.draw do
 
   match '/contact', to: 'static_pages#contact'
 
+  get :search_items, action: 'search', controller: 'items'
+
+  post :search_items_results, action: 'search_results', controller: 'items'
+
   # match '/warehouses', to: 'warehouses#index'
   resources :warehouses, only: [:index] do
-    resources :items, only: [:index]
+    resources :items, only: [:index] do 
+      
+    end
   end
+
 
 
   # The priority is based upon order of creation:
