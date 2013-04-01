@@ -14,7 +14,9 @@ module SessionsHelper
     @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
     apiMessageListHolder = APIMessageListHolder.new
     token =  @warehouseClient.login(user.username, user.password, apiMessageListHolder)
-    if token != nil
+    if apiMessageListHolder.value != nil && 
+      apiMessageListHolder.value[0].code == 1 && token != nil
+      
       cookies.permanent[:remember_token] = token
 
       apiMessageListHolder = APIMessageListHolder.new
@@ -38,7 +40,7 @@ module SessionsHelper
     if token != nil
       user =  @warehouseClient.getLoggedUser(cookies[:remember_token], apiMessageListHolder)
     end
-    if user == nil
+    if user == nil || user.id == 0
       @current_user = nil
     else
        @current_user = user

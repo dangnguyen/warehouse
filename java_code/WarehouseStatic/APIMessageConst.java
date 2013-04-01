@@ -7,7 +7,8 @@ public enum APIMessageConst
     CONNECTION_ERROR((short)2, "Connection error"), 
     DB_CONNECTION_ERROR((short)3, "Database connection error"),
     NOT_OK((short)4, "Database Insert/Update/Delete false"),
-    ORTHER_ERROR((short)5, "Other error")
+    ORTHER_ERROR((short)5, "Other error"),
+    NOT_FOUND((short)6, "Not found")
     ;
 
 

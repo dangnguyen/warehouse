@@ -1,4 +1,12 @@
-%ul.warehouses
-  - @warehouses.each do |warehouse|
-    %li
-      =link_to warehouse.name, warehouse_items_path(warehouse.id)
+%table.table.table-striped
+  %thead
+    %tr
+      %td= "Id"
+      %td= "Name"
+      %td= "Funtions"
+  %tbody
+    - @warehouses.each do |warehouse|
+      %tr
+        %td= warehouse.id
+        %td= warehouse.name
+        %td= link_to "View history", warehouse_items_path(warehouse.id)
