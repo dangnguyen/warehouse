@@ -54,6 +54,51 @@ class ItemsController < ApplicationController
     # puts "+"*80
   end
 
+  def import
+    @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
+
+    apiMessageListHolder = APIMessageListHolder.new
+    @item_type_list = @warehouseClient.getItemTypeList(params[:warehouse_id].to_i, cookies[:remember_token], apiMessageListHolder)
+    
+    @item_arr = @item_type_list.map do |item|
+      [item.description, item.id]
+    end
+  end
+
+  def do_import
+
+    warehouse_id = params[:warehouse_id].to_i
+    item_code = params[:item_code].to_i
+    @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
+
+    apiMessageListHolder = APIMessageListHolder.new
+    @warehouseClient.addItem(warehouse_id, item_code, params[:quantity].to_i, cookies[:remember_token], apiMessageListHolder)
+    flash[:success] = "Imported successfully!"
+    redirect_to import_warehouse_items_path
+  end
+
+  def export
+    @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
+
+    apiMessageListHolder = APIMessageListHolder.new
+    @item_type_list = @warehouseClient.getItemTypeList(params[:warehouse_id].to_i, cookies[:remember_token], apiMessageListHolder)
+    
+    @item_arr = @item_type_list.map do |item|
+      [item.description, item.id]
+    end
+  end
+
+  def do_export
+    warehouse_id = params[:warehouse_id].to_i
+    item_code = params[:item_code].to_i
+    @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
+
+    apiMessageListHolder = APIMessageListHolder.new
+    @warehouseClient.removeItem(warehouse_id, item_code, params[:quantity].to_i, cookies[:remember_token], apiMessageListHolder)
+    flash[:success] = "Exported successfully!"
+    redirect_to import_warehouse_items_path
+  end
+
   private
     def get_warehouses
       # w1 = WarehouseInfo.new

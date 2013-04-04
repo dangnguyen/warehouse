@@ -1,0 +1,18 @@
+= render "form_create", :warehouse_id => @warehouse_id, :description => "", :cost => 0
+
+%table.table.table-striped
+  %thead
+    %tr
+      %td= "Item code"
+      %td= "Description"
+      %td= "Cost"
+      %td= "Functions"
+  %tbody
+    - @item_type_list.each do |item_type|
+      %tr
+        %td= item_type.id
+        %td= item_type.description
+        %td= item_type.cost
+        %td
+          = link_to "Edit", edit_warehouse_item_type_path(@warehouse_id, item_type.id)
+          = link_to "Delete", warehouse_item_type_path(@warehouse_id, item_type.id), :method => "delete"

@@ -1,0 +1,8 @@
+.search.row
+  .span3
+    = form_tag(export_warehouse_items_path, :method => "post") do |f|
+      = label_tag :quantity, "Quantity"
+      = text_field_tag :quantity
+      = label_tag :item_code, "Item code"
+      = select_tag(:item_code, options_for_select(@item_arr))
+      = submit_tag "Export", class: "btn btn-large btn-primary"

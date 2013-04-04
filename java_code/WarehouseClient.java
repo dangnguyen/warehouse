@@ -123,10 +123,58 @@ public class WarehouseClient {
 	}
 
 	public void addUser (String username, String password, short role_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
 
+			warehouseImpl.addUser(username, password, role_id, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
 	}
   public void removeUser (short user_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
 
+			warehouseImpl.removeUser(user_id, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
   }
 
 	public java_code.Warehouse.User getLoggedUser (String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
@@ -158,14 +206,121 @@ public class WarehouseClient {
 		}
 		return result;
 	}
-	void updateUser (java_code.Warehouse.User user, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+	public void updateUser (java_code.Warehouse.User user, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
 
+			warehouseImpl.updateUser(user, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
 	}
-  java_code.Warehouse.Role getRole (short role_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
-  	return null;
+  public java_code.Warehouse.Role getRole (short role_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	java_code.Warehouse.Role result = null;
+		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			result = warehouseImpl.getRole(role_id, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+		return result;
   }
 
-  java_code.Warehouse.Item[] getItemList(short warehouse_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  public void addItem (short warehouse_id, short itemCode, short qty, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			warehouseImpl.addItem(warehouse_id, itemCode, qty, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+  }
+
+  public void removeItem (short warehouse_id, short itemCode, short qty, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			warehouseImpl.removeItem(warehouse_id, itemCode, qty, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+  }
+
+
+  public java_code.Warehouse.Item[] getItemList(short warehouse_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
   	java_code.Warehouse.Item[] result = null;
 		try{
 			String[] params = new String[4];
@@ -195,7 +350,7 @@ public class WarehouseClient {
 		return result;
   }
 
-  java_code.Warehouse.Item getItem (short warehouse_id, short itemCode, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  public java_code.Warehouse.Item getItem (short warehouse_id, short itemCode, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
   	java_code.Warehouse.Item result = null;
 		try{
 			String[] params = new String[4];
@@ -224,6 +379,153 @@ public class WarehouseClient {
 		}
 		return result;
   }
+
+  public java_code.Warehouse.ItemType[] getItemTypeList (short warehouse_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	java_code.Warehouse.ItemType[] result = null;
+		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			result = warehouseImpl.getItemTypeList(warehouse_id, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+		return result;
+  }
+
+  public java_code.Warehouse.ItemType getItemType (short warehouse_id, short item_type_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	java_code.Warehouse.ItemType result = null;
+		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			result = warehouseImpl.getItemType(warehouse_id, item_type_id, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+		return result;
+  }
+
+  public java_code.Warehouse.ItemType addItemType (short warehouse_id, java_code.Warehouse.ItemType item_type, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	java_code.Warehouse.ItemType result = null;
+		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			result = warehouseImpl.addItemType(warehouse_id, item_type, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+		return result;
+  }
+  public void removeItemType (short warehouse_id, short item_type_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+ 		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			warehouseImpl.removeItemType(warehouse_id, item_type_id, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+  }
+  public java_code.Warehouse.ItemType updateItemType (short warehouse_id, java_code.Warehouse.ItemType item_type, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
+  	java_code.Warehouse.ItemType result = null;
+		try{
+			String[] params = new String[4];
+			params[0] = "-ORBInitialPort";
+			params[1] = port.toString();
+			params[2] = "-ORBInitialHost";
+			params[3] = host;
+			//	create	and	initialize	the	ORB
+			ORB	orb	=	ORB.init(params,	null);
+			//	get	the	root	naming	context
+			org.omg.CORBA.Object	objRef	=
+			orb.resolve_initial_references("NameService");
+			//	Use	NamingContextExt	instead	of	NamingContext.	This	is
+			//	part	of	the	Interoperable	naming	Service.
+			NamingContextExt	ncRef	=	NamingContextExtHelper.narrow(objRef);
+			//	resolve	the	Object	Reference	in	Naming
+			String	name	=	"WHM";
+			warehouseImpl	=	WHMHelper.narrow(ncRef.resolve_str(name));
+			System.out.println("Obtained	a	handle	on	server	object:	"	+	warehouseImpl);
+
+			result = warehouseImpl.updateItemType(warehouse_id, item_type, token, apiMessageList);
+
+		}	catch	(Exception	e)	{
+			System.out.println("ERROR	:	"	+	e)	;
+			e.printStackTrace(System.out);
+		}
+		return result;
+  }
+  
 
   public java_code.Warehouse.User[] getUserListByWarehouseId (short warehouse_id, String token, java_code.Warehouse.APIMessageListHolder apiMessageList) {
   	java_code.Warehouse.User[] result = null;

@@ -1,5 +1,15 @@
 WareHouse::Application.routes.draw do
 
+  get "item_types/index"
+
+  get "item_types/new"
+
+  get "item_types/edit"
+
+  get "item_types/create"
+
+  get "item_types/update"
+
   #get "static_pages/home"
 
   #root :to => "home#index"
@@ -25,7 +35,14 @@ WareHouse::Application.routes.draw do
   # match '/warehouses', to: 'warehouses#index'
   resources :warehouses, only: [:index] do
     resources :items, only: [:index] do
-
+      collection do
+        get :import, action: 'import', controller: 'items'
+        post :import, action: 'do_import', controller: 'items'
+        get :export, action: 'export', controller: 'items'
+        post :export, action: 'do_export', controller: 'items'
+      end
+    end
+    resources :item_types do
     end
   end
 

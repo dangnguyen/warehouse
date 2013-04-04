@@ -1,0 +1,9 @@
+.search.row
+  .span3
+    = form_tag(warehouse_item_type_path(warehouse_id, item_type_id), :method => "put") do |f|
+      = label_tag :description, "Description"
+      = text_field_tag :description, description
+      = label_tag :cost, "Cost"
+      = text_field_tag :cost, cost
+      = hidden_field_tag :item_type_id, item_type_id
+      = submit_tag "Save", class: "btn btn-large btn-primary"

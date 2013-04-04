@@ -9,4 +9,8 @@
       %tr
         %td= warehouse.id
         %td= warehouse.name
-        %td= link_to "View history", warehouse_items_path(warehouse.id)
+        %td
+          %li= link_to "View history", warehouse_items_path(warehouse.id)
+          %li= link_to "Item types", warehouse_item_types_path(warehouse.id)
+          %li= link_to "Import", import_warehouse_items_path(warehouse.id)
+          %li= link_to "Export", export_warehouse_items_path(warehouse.id)
