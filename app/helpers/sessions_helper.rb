@@ -14,9 +14,9 @@ module SessionsHelper
     @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
     apiMessageListHolder = APIMessageListHolder.new
     token =  @warehouseClient.login(user.username, user.password, apiMessageListHolder)
-    if apiMessageListHolder.value != nil && 
+    if apiMessageListHolder.value != nil &&
       apiMessageListHolder.value[0].code == 1 && token != nil
-      
+
       cookies.permanent[:remember_token] = token
 
       apiMessageListHolder = APIMessageListHolder.new
@@ -51,12 +51,11 @@ module SessionsHelper
     user == current_user
   end
 
-  # def signed_in_user
-  #     unless signed_in?
-  #       store_location
-  #       redirect_to signin_path, notice: "Please sign in."
-  #     end
-  # end
+  def signed_in_user
+    unless signed_in?
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
 
   def sign_out
     self.current_user = nil

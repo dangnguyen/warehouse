@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_filter :signed_in_user
   java_import "java_code.Warehouse.WarehouseInfo"
   java_import "java_code.Warehouse.Item"
   java_import "java_code.Warehouse.APIMessageListHolder"
@@ -59,7 +60,7 @@ class ItemsController < ApplicationController
 
     apiMessageListHolder = APIMessageListHolder.new
     @item_type_list = @warehouseClient.getItemTypeList(params[:warehouse_id].to_i, cookies[:remember_token], apiMessageListHolder)
-    
+
     @item_arr = @item_type_list.map do |item|
       [item.description, item.id]
     end
@@ -82,7 +83,7 @@ class ItemsController < ApplicationController
 
     apiMessageListHolder = APIMessageListHolder.new
     @item_type_list = @warehouseClient.getItemTypeList(params[:warehouse_id].to_i, cookies[:remember_token], apiMessageListHolder)
-    
+
     @item_arr = @item_type_list.map do |item|
       [item.description, item.id]
     end

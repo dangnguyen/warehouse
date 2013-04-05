@@ -1,24 +1,22 @@
 %header.navbar.navbar-fixed-top
   .navbar-inner
     .container
-      = link_to "sample app", '#', id: "logo" 
+      = link_to "sample app", '#', id: "logo"
       %nav
         %ul.nav.pull-right
-          %li= link_to "Home", root_path 
-          %li= link_to "Help", help_path 
-          - if signed_in? 
+          %li= link_to "Home", root_path
+          %li= link_to "Help", help_path
+          - if signed_in?
             %li= link_to "Warehouses", warehouses_path
             %li= link_to "Search items", search_items_path
-            %li= link_to "Users", users_path 
+            - if current_user.role_id == 1
+              %li= link_to "Users", users_path
             %li.dropdown{:id => "fat-menu"}
               %a.dropdown-toggle{:href => "#", :data => {:toggle => 'dropdown'}}
-                = "Account" 
+                = "Account"
                 %b.caret
               %ul.dropdown-menu
-                %li= link_to "Profile", "#" 
-                %li= link_to "Settings", "#"
-                %li.divider
                 %li= link_to "Sign out", signout_path, method: "delete"
-          - else 
+          - else
             %li= link_to "Sign in", signin_path
 

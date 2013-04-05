@@ -1,11 +1,12 @@
 class ItemTypesController < ApplicationController
+  before_filter :signed_in_user
   java_import "java_code.Warehouse.ItemType"
   def index
     @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
 
     apiMessageListHolder = APIMessageListHolder.new
     @item_type_list = @warehouseClient.getItemTypeList(params[:warehouse_id].to_i, cookies[:remember_token], apiMessageListHolder)
-    
+
     @warehouse_id = params[:warehouse_id].to_i
   end
 

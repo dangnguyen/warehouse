@@ -1,2 +1,17 @@
-%h1 Users#index
-%p Find me in app/views/users/index.html.haml
+= link_to "New user", new_user_path
+%table.table.table-striped
+  %thead
+    %tr
+      %td= "Id"
+      %td= "Username"
+      %td= "Role"
+      %td= "Links"
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.username
+        %td= user.role_name
+        %td
+          = link_to "Edit", edit_user_path(user.id)
+          = link_to "Delete", user_path(user.id), :method => "delete"

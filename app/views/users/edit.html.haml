@@ -1,0 +1,11 @@
+.search.row
+  .span3
+    = form_tag(user_path(@user.id), :method => "put") do |f|
+      = label_tag :username, "Username"
+      = text_field_tag :username, @user.username
+      = label_tag :password, "Password"
+      = password_field_tag :password
+      = label_tag :role_id, "Role"
+      = select_tag(:role_id, options_for_select(@role_arr, :selected => @user.role_id))
+      = hidden_field_tag :user_id, @user.id
+      = submit_tag "Save", class: "btn btn-large btn-primary"

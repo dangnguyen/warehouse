@@ -1,4 +1,5 @@
 class WarehousesController < ApplicationController
+  before_filter :signed_in_user
   java_import "java_code.Warehouse.WarehouseInfo"
   def index
     # w1 = WarehouseInfo.new
