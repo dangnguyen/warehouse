@@ -7,5 +7,7 @@
       = password_field_tag :password
       = label_tag :role_id, "Role"
       = select_tag(:role_id, options_for_select(@role_arr, :selected => @user.role_id))
+      = label_tag :warehouse_ids, "Warehouses"
+      = select_tag(:warehouse_ids, options_for_select(@warehouse_arr, :selected => @selected_warehouse_ids), { :multiple => true})
       = hidden_field_tag :user_id, @user.id
       = submit_tag "Save", class: "btn btn-large btn-primary"

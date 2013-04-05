@@ -41,6 +41,19 @@ class UsersController < ApplicationController
     @user = @warehouseClient.getUser(params[:id].to_i, cookies[:remember_token], apiMessageListHolder)
 
 
+
+    apiMessageListHolder = APIMessageListHolder.new
+    @warehouses = @warehouseClient.getWarehouseList(cookies[:remember_token], apiMessageListHolder)
+    @warehouse_arr = @warehouses.map do |w|
+      [w.name, w.id]
+    end
+
+    apiMessageListHolder = APIMessageListHolder.new
+    @selected_warehouses = @warehouseClient.getWarehouseListByUserId(params[:id].to_i, cookies[:remember_token], apiMessageListHolder)
+
+    @selected_warehouse_ids = @selected_warehouses.map do |w|
+      w.id
+    end
   end
 
   def update
@@ -52,7 +65,12 @@ class UsersController < ApplicationController
     @user.password = params[:password]
     @user.role_id = params[:role_id].to_i
     @user.role_name = ""
-    @user = @warehouseClient.updateUser(@user, cookies[:remember_token], apiMessageListHolder)
+    @warehouseClient.updateUser(@user, cookies[:remember_token], apiMessageListHolder)
+
+    warehouse_ids = params[:warehouse_ids]. map {|w| w.to_i}
+
+    @warehouseClient.updateWarehousePermissionForUser(@user.id, warehouse_ids, cookies[:remember_token], apiMessageListHolder)
+
     flash[:success] = "Update successfully!"
     redirect_to users_path
   end
