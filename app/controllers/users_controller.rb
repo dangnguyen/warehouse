@@ -54,6 +54,10 @@ class UsersController < ApplicationController
     @selected_warehouse_ids = @selected_warehouses.map do |w|
       w.id
     end
+
+
+    puts "=="*80
+    puts @selected_warehouse_ids.inspect
   end
 
   def update

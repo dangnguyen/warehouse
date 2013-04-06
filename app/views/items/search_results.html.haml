@@ -1,6 +1,19 @@
 = render "search"
-.search_results
-  - @items.each do |item|
-    %li
-      = item.itemCode
-      = item.description
+%table.table.table-striped
+  %thead
+    %tr
+      %td= "Item code"
+      %td= "Description"
+      %td= "Quantity"
+      %td= "Date"
+      %td= "Cost"
+      %td= "Warehouse id"
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.itemCode
+        %td= item.description
+        %td= item.qty
+        %td= Time.at(item.date/1000)
+        %td= item.cost
+        %td= item.warehouse_id

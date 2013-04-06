@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
 
 
     @warehouse_arr = get_warehouses.map do |w|
-      [w.name, w.id]
+      ["#{w.id}: #{w.name}", w.id]
     end
 
 
@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
 
 
     @warehouse_arr = get_warehouses.map do |w|
-      [w.name, w.id]
+      ["#{w.id}: #{w.name}", w.id]
     end
 
     @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
     @items = []
     warehouse_ids =  params[:warehouse_ids]
 
-    if warehouse_ids = []
+    if warehouse_ids == []
       warehouse_ids = @warehouse_arr.map do |w|
         w[1]
       end
