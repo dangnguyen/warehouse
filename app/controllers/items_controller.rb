@@ -9,8 +9,8 @@ class ItemsController < ApplicationController
 
     @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
     apiMessageListHolder = APIMessageListHolder.new
-    warehouse_id = params[:warehouse_id].to_i
-    @items =  @warehouseClient.getItemList(warehouse_id, cookies[:remember_token], apiMessageListHolder)
+    @warehouse_id = params[:warehouse_id].to_i
+    @items =  @warehouseClient.getItemList(@warehouse_id, cookies[:remember_token], apiMessageListHolder)
 
   end
 
@@ -98,6 +98,16 @@ class ItemsController < ApplicationController
     @warehouseClient.removeItem(warehouse_id, item_code, params[:quantity].to_i, cookies[:remember_token], apiMessageListHolder)
     flash[:success] = "Exported successfully!"
     redirect_to import_warehouse_items_path
+  end
+
+  def delivery_note
+    @warehouseClient = WarehouseClient.new(WareHouse::Application.config.api_host, WareHouse::Application.config.api_port)
+    apiMessageListHolder = APIMessageListHolder.new
+    @warehouse_id = params[:warehouse_id].to_i
+    @item_id = params[:item_id].to_i
+    @time_code = params[:time_code].to_i
+    @item =  @warehouseClient.getItemImportExportInfoByTime(@warehouse_id, @item_id, @time_code, cookies[:remember_token], apiMessageListHolder)
+
   end
 
   private

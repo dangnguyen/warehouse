@@ -41,6 +41,7 @@ WareHouse::Application.routes.draw do
         get :export, action: 'export', controller: 'items'
         post :export, action: 'do_export', controller: 'items'
       end
+      get "delivery_note/:time_code", action: 'delivery_note', controller: 'items', :as => "delivery_note"
     end
     resources :item_types do
     end

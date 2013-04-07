@@ -15,6 +15,8 @@ gem 'haml'
 
 gem 'trinidad', :require => false
 
+gem 'prawn_rails'
+
 group :development do
   gem 'haml-rails'
   gem 'better_errors'
